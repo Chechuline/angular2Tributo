@@ -2,10 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { HttpModule } from '@angular/http';
 
+// my-components
 import { RUTAS_APP } from './app.routes';
 import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
 import { BandDetailsComponent } from './pages/band-details/band-details.component';
+
+// my-services
+import { WikiService } from './wiki.service'
 
 @NgModule({
   declarations: [
@@ -15,9 +20,10 @@ import { BandDetailsComponent } from './pages/band-details/band-details.componen
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     RUTAS_APP,
   ],
-  providers: [],
+  providers: [WikiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
