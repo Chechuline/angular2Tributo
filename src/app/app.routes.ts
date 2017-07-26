@@ -6,7 +6,6 @@ import { BandDetailsComponent } from './pages/band-details/band-details.componen
 import { UnderConstructionComponent } from './pages/under-construction/under-construction.component'
 
 export const routes: Routes = [
-    { path: '', component: AppComponent,pathMatch: 'full' },
     { path: 'the-rolling-stones', component:BandDetailsComponent },
     { path: 'the-beatles', component:BandDetailsComponent },
     { path: 'queen', component:BandDetailsComponent },
