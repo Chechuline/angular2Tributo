@@ -13,11 +13,13 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
 
 
   @Input() bandData: BandData;
+
   private videoUrl: SafeResourceUrl;
   private imgUrl: SafeResourceUrl;
   private altImg: string;
   private oldTags: any;
   private contenido: string = '';
+  private ready:boolean = false;
 
   constructor(private sanitizer: DomSanitizer, private wikiService: WikiService, private meta: Meta, private title: Title) {
 
@@ -25,19 +27,11 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
     this.oldTags.push(this.meta.getTag('name="description"'));
     this.oldTags.push(this.meta.getTag('name="keywords"'));
     this.oldTags.push(this.title.getTitle());
-
-    // -- temp band info
-    this.bandData = new BandData('Queen', '', '');
-    this.bandData.videoId = '_Uu12zY01ts';
-    this.bandData.imgUrl = 'http://i4.mirror.co.uk/incoming/article6736694.ece/ALTERNATES/s615b/Queen-rock-band-members-Freddie-Mercury-Brian-May-Roger-Taylor-Brian-Deacon.jpg'
-    // End of temp band info
-
-    this.title.setTitle(this.bandData.name.replace(/_/g, ' '));
   }
 
   ngOnInit() {
 
-
+    this.title.setTitle(this.bandData.name.replace(/_/g, ' '));
 
     this.wikiService.getData(this.bandData.name).subscribe(result => {
       //rellenar datos
@@ -56,6 +50,8 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
       this.meta.removeTag('name="keywords"');
 
       this.meta.addTags([{ name: 'description', content: limpia }, { name: 'keywords', content: `banda rock ${this.bandData.name.replace(/_/g, ' ')}` }]);
+
+      this.ready = true;
 
     },
       error => {

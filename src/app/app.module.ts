@@ -10,13 +10,19 @@ import { UnderConstructionComponent } from './pages/under-construction/under-con
 import { BandDetailsComponent } from './pages/band-details/band-details.component';
 
 // my-services
-import { WikiService } from './wiki.service'
+import { WikiService } from './wiki.service';
+import { QueenComponent } from './pages/queen/queen.component';
+import { RollingComponent } from './pages/rolling/rolling.component';
+import { BeatlesComponent } from './pages/beatles/beatles.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UnderConstructionComponent,
     BandDetailsComponent,
+    QueenComponent,
+    RollingComponent,
+    BeatlesComponent,
   ],
   imports: [
     BrowserModule,
