@@ -1,24 +1,15 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response, RequestOptions } from '@angular/http';
+import { Jsonp } from '@angular/http';
 
 @Injectable()
 export class WikiService {
-  private wikiUrl:string = 'https://es.wikipedia.org/w/api.php?action=parse&action=parse&format=json&prop=text&section=0&page=';
-  constructor(private http:Http) { }
+  private wikiUrl: string = 'https://es.wikipedia.org/w/api.php?action=query&action=parse&format=json&prop=text&section=0&page=';
+  constructor(private jsonp: Jsonp) { }
 
-  getData(grupo){
-     //TODO: cabeceras
-    return this.http.get(`${this.wikiUrl}grupo`).map(res => res.json());
-  }
-
-  getHeaders(){
-    let cabecera =  new Headers();
-    cabecera.append("Access-Control-Allow-Origin", "*");
-
-    // let options = new RequestOptions({ Headers: cabecera});
-    // return options;
-
+  getData(grupo) {
+    console.info(`${this.wikiUrl}${grupo}&callback=JSONP_CALLBACK`);
+    return this.jsonp.get(`${this.wikiUrl}${grupo}&callback=JSONP_CALLBACK`).map(res => res.json());
   }
 }

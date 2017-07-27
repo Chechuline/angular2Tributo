@@ -15,7 +15,9 @@ export class BandDetailsComponent implements OnInit {
   private videoUrl: SafeResourceUrl;
   private imgUrl:SafeResourceUrl;
   private altImg:string;
+ 
   constructor(private sanitizer: DomSanitizer,private wikiService:WikiService) {
+    //temp band info
     this.bandData = new BandData('queen','','');
     this.bandData.videoId = '_Uu12zY01ts';
     this.bandData.imgUrl = 'http://i4.mirror.co.uk/incoming/article6736694.ece/ALTERNATES/s615b/Queen-rock-band-members-Freddie-Mercury-Brian-May-Roger-Taylor-Brian-Deacon.jpg'
@@ -28,7 +30,9 @@ export class BandDetailsComponent implements OnInit {
     this.imgUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.bandData.imgUrl);
 
     this.wikiService.getData(this.bandData.name).subscribe(result => {
-      console.info(result);
+      const data = JSON.stringify(result.parse.text);
+
+      console.info(data);
     }, 
     error=>{
       console.info(error);

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HttpModule } from '@angular/http';
+import { JsonpModule } from '@angular/http'
 
 // my-components
 import { RUTAS_APP } from './app.routes';
@@ -20,7 +20,7 @@ import { WikiService } from './wiki.service'
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    JsonpModule,
     RUTAS_APP,
   ],
   providers: [WikiService],
