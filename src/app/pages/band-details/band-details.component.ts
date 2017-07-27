@@ -35,9 +35,9 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
 
     this.wikiService.getData(this.bandData.name).subscribe(result => {
       //rellenar datos
-      let data = JSON.stringify(result.parse.text).split("<p>")[1].replace(/<\/?[^>]+(>|$)/g, "").split(".");
+      let data = this.limpiar(JSON.stringify(result.parse.text).split("<p>")[1]).split(".");
       const limpia = data.slice(0, data.length - 1).join(".");
-      let data2 = JSON.stringify(result.parse.text).split("<p>")[2].replace(/<\/?[^>]+(>|$)/g, "").split(".");
+      let data2 = this.limpiar(JSON.stringify(result.parse.text).split("<p>")[2]).split(".");
       this.contenido = data2.slice(0, data2.length - 1).join(".");
 
       this.altImg = `${this.bandData.name} image`;
@@ -64,6 +64,11 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
       debugger;
     });
 
+  }
+
+  limpiar(str):string{
+    var limpia = str.replace(/<\/?[^>]+(>|$)/g, '').replace(/\[.{1,2}\]/g,'');
+    return limpia;
   }
 
 }
