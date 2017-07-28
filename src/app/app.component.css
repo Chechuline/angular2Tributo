@@ -12,22 +12,25 @@
     text-decoration: none;
 } */
 
+
 .navbar {
+    
     background-color: lightskyblue;
-
+    width: 100%;
     min-height: 20px;
-    height: 10vh;
-    /* max-height: 50px; */
+    height: 4rem;
+    /* max-height: 50px;  */
 
-    /*margin: 0px 1px 10px 1px;*/
-    padding: 0;
-    /*border: 1px solid black;*/
+    padding: 2px;
     
     display: flex;
+    position: fixed;
+    top:0;
+    left:0;
     flex-flow: row nowrap;
-    /* justify-content: flex-end; */
     justify-content: space-around;
     align-items: center;
+    z-index: 2;
 }
 
 .navbar>ul {
