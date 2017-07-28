@@ -8,12 +8,13 @@ import { JsonpModule } from '@angular/http'
 import { RUTAS_APP } from './app.routes';
 import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
 import { BandDetailsComponent } from './pages/band-details/band-details.component';
-
-// my-services
-import { WikiService } from './wiki.service';
 import { QueenComponent } from './pages/queen/queen.component';
 import { RollingComponent } from './pages/rolling/rolling.component';
 import { BeatlesComponent } from './pages/beatles/beatles.component';
+
+// my-services
+import { WikiService } from './wiki.service';
+
 
 @NgModule({
   declarations: [
