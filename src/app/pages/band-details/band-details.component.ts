@@ -44,8 +44,6 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
       this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`http://www.youtube.com/embed/${this.bandData.videoId}?html5=1&amp;rel=0&amp;hl=es_ES&amp;version=3`)
       this.imgUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.bandData.imgUrl);
 
-      //console.log(data2);
-
       this.meta.removeTag('name="description"');
       this.meta.removeTag('name="keywords"');
 
