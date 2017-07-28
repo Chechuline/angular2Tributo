@@ -1,0 +1,58 @@
+
+@media all and (min-width:641px){
+img{
+    width: 20%;
+    height: 20%;
+    float: right;
+    transition: all .2s linear;
+}
+img:hover{
+    width: 60%;
+    height: 60%;
+    
+}
+.container{
+    border: 1px solid red;
+    margin: 6rem 2rem 0 2rem;
+    background: rgba(255,255,255,.7);
+}
+.fadein{
+    animation: aparece 2s;
+}
+.video{
+    height: 320px;
+    width: 480px;
+}
+
+@keyframes aparece {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes agranda {
+    from { 
+        width: 20%;
+        height: 20%;
+    }
+    to {
+        width: 60%;
+        height: 60%;
+    }
+}
+}
+
+
+/*medium size*/
+@media all and (min-width: 481px) and (max-width: 640px) {
+    
+}
+
+/*small size*/
+@media all and (min-width: 320px) and (max-width: 480px) {
+    img{
+         width: 100%;
+        height: 100%;
+    }
+   .container{
+       margin: 0;
+   }
+}
