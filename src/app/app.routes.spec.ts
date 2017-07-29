@@ -58,14 +58,12 @@ describe('Router', () => {
   it('default route navigate to Queen', (() => {
     let fixture = TestBed.createComponent(AppComponent);
     router.navigate(['/foo']).then(() => {
-      debugger;
       expect(location.path()).toBe('/foo');
     });
   }));
   it('default route navigate to Bar', (() => { 
     let fixture = TestBed.createComponent(AppComponent);
     router.navigate(['/bar']).then(() => {
-      debugger;
       expect(location.path()).toBe('/bar');
     });
   }));
