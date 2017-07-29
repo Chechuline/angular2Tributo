@@ -7,6 +7,7 @@ import { RollingComponent } from './pages/rolling/rolling.component';
 import { BeatlesComponent } from './pages/beatles/beatles.component';
 import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
 
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -26,6 +27,6 @@ describe('AppComponent', () => {
   it(`should have as title 'Angular Rocks'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
+    expect(app.title).toEqual('Angular Rocks');
   }));
 });

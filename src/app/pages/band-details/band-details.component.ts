@@ -17,13 +17,12 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
   private videoUrl: SafeResourceUrl;
   private imgUrl: SafeResourceUrl;
   private altImg: string;
-  private oldTags: any;
+  private oldTags: any[]=[];
   private contenido: string = '';
   private ready:boolean = false;
 
   constructor(private sanitizer: DomSanitizer, private wikiService: WikiService, private meta: Meta, private title: Title) {
 
-    this.oldTags = [];
     this.oldTags.push(this.meta.getTag('name="description"'));
     this.oldTags.push(this.meta.getTag('name="keywords"'));
     this.oldTags.push(this.title.getTitle());

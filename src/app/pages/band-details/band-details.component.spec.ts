@@ -1,16 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core'
 
 import { BandDetailsComponent } from './band-details.component';
-
+import { WikiService } from '../../wiki.service';
 describe('BandDetailsComponent', () => {
   let component: BandDetailsComponent;
   let fixture: ComponentFixture<BandDetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BandDetailsComponent ]
+      declarations: [BandDetailsComponent],
+      providers: [WikiService],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
