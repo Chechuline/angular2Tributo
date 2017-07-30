@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl, Meta, Title } from '@angular/platform-browser'
 
+import { Router } from '@angular/router';
+
 import { BandData } from '../bandData'
 import { WikiService } from '../../wiki.service'
 
@@ -17,11 +19,12 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
   private videoUrl: SafeResourceUrl;
   private imgUrl: SafeResourceUrl;
   private altImg: string;
-  private oldTags: any[]=[];
+  private oldTags: any[] = [];
   private contenido: string = '';
-  private ready:boolean = false;
+  private ready: boolean = false;
+  private ulrBase: string = 'www.myPublicUrl.com';
 
-  constructor(private sanitizer: DomSanitizer, private wikiService: WikiService, private meta: Meta, private title: Title) {
+  constructor(private sanitizer: DomSanitizer, private wikiService: WikiService, private meta: Meta, private title: Title,private router:Router) {
 
     this.oldTags.push(this.meta.getTag('name="description"'));
     this.oldTags.push(this.meta.getTag('name="keywords"'));
@@ -31,13 +34,22 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.title.setTitle(this.bandData.name.replace(/_/g, ' '));
+    // open graph tags
+    this.meta.addTags([
+      { name: 'og:title', content: this.bandData.name.replace(/_/g, ' ') },
+      { name: 'og:image', content: this.bandData.imgUrl },
+      { name: 'og:locale', content: 'es_ES' },
+      { name: 'og:url', content: `${this.ulrBase}${this.router.url}` },
+    ]);
+
+    console.log(this.router.url);
 
     this.wikiService.getData(this.bandData.name).subscribe(result => {
-      //rellenar datos
+      //rellena datos
       let data = this.limpiar(JSON.stringify(result.parse.text).split("<p>")[1]).split(".");
       const limpia = data.slice(0, data.length - 1).join(".");
       let data2 = this.limpiar(JSON.stringify(result.parse.text).split("<p>")[2]).split(".");
-      this.contenido = data2.slice(0, data2.length - 1).join(".");
+      this.contenido = `${limpia}. ${data2.slice(0, data2.length - 1).join(".")}`;
 
       this.altImg = `${this.bandData.name} image`;
       this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`http://www.youtube.com/embed/${this.bandData.videoId}?html5=1&amp;rel=0&amp;hl=es_ES&amp;version=3`)
@@ -46,7 +58,11 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
       this.meta.removeTag('name="description"');
       this.meta.removeTag('name="keywords"');
 
-      this.meta.addTags([{ name: 'description', content: limpia }, { name: 'keywords', content: `banda rock ${this.bandData.name.replace(/_/g, ' ')}` }]);
+      this.meta.addTags([
+        { name: 'og:description', content: limpia },
+        { name: 'description', content: limpia },
+        { name: 'keywords', content: `banda rock ${this.bandData.name.replace(/_/g, ' ')}` }
+      ]);
 
       this.ready = true;
 
@@ -56,15 +72,21 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
       });
   }
   ngOnDestroy(): void {
+    //remove Opem graph tags
+    const OgTag: any[] = ['name="og:title"','name="og:description"','name="og:image"','name="og:locale"','name="og:url"'];
+    OgTag.map(tag=>{
+      this.meta.removeTag(tag);
+    });
+
+    // update meta tags
     this.oldTags.map(tag => {
-      (typeof tag !== 'string') ? this.meta.addTag({ name: tag.name, content: tag.content }) : this.title.setTitle(tag);
-      debugger;
+      (typeof tag !== 'string') ? this.meta.updateTag({ name: tag.name, content: tag.content }) : this.title.setTitle(tag);
     });
 
   }
 
-  limpiar(str):string{
-    var limpia = str.replace(/<\/?[^>]+(>|$)/g, '').replace(/\[.{1,2}\]/g,'');
+  limpiar(str): string {
+    var limpia = str.replace(/<\/?[^>]+(>|$)/g, '').replace(/\[.{1,2}\]/g, '');
     return limpia;
   }
 
