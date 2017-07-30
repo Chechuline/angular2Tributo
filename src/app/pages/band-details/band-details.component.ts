@@ -23,6 +23,7 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
   private contenido: string = '';
   private ready: boolean = false;
   private ulrBase: string = 'www.myPublicUrl.com';
+  private mainTitle:string;
 
   constructor(private sanitizer: DomSanitizer, private wikiService: WikiService, private meta: Meta, private title: Title,private router:Router) {
 
@@ -32,11 +33,12 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.mainTitle = this.bandData.name.replace(/_/g, ' ');
 
-    this.title.setTitle(this.bandData.name.replace(/_/g, ' '));
+    this.title.setTitle(this.mainTitle);
     // open graph tags
     this.meta.addTags([
-      { name: 'og:title', content: this.bandData.name.replace(/_/g, ' ') },
+      { name: 'og:title', content: this.mainTitle },
       { name: 'og:image', content: this.bandData.imgUrl },
       { name: 'og:locale', content: 'es_ES' },
       { name: 'og:url', content: `${this.ulrBase}${this.router.url}` },

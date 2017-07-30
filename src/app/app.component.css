@@ -15,7 +15,7 @@
 
 .navbar {
     
-    background-color: lightskyblue;
+    background-color: rgb(186,0,32);;
     width: 100%;
     min-height: 20px;
     height: 4rem;
@@ -34,7 +34,7 @@
 
 .navbar>ul {
     list-style: none;
-    background-color: lightskyblue;
+    background-color: rgb(186,0,32);;
     margin:0;
     padding:0;
     width: 60%;
@@ -48,12 +48,12 @@
 .navbar>ul> li {
     padding: 10px 20px 0px 20px;
     width: 25vw;
-
+    
     margin: 0;
     transition: background-color .3s ease;
 }
 .navbar>ul> li:hover {
-    background-color: deepskyblue;
+    background-color: rgb(214,0,28);
 }
 .navbar a{
     width: 100%;
@@ -62,7 +62,7 @@
 }
 .navbar a:active{
     text-decoration: none;
-    color: blue;
+    color: black;
 }
 
 /*medium size*/
