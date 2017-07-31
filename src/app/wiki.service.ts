@@ -9,7 +9,6 @@ export class WikiService {
   constructor(private jsonp: Jsonp) { }
 
   getData(grupo) {
-    console.info(`${this.wikiUrl}${grupo}&callback=JSONP_CALLBACK`);
     return this.jsonp.get(`${this.wikiUrl}${grupo}&callback=JSONP_CALLBACK`).map(res => res.json());
   }
 }

@@ -4,7 +4,6 @@ p{
     padding: 0 .5rem 0 0;
     
 }
-
 .fadein{
     animation: aparece 2s;
 }
@@ -42,7 +41,7 @@ img{
     .container {
         margin: 6rem 0 0 2rem;
     }
-    .container > p {
+    p {
         font-size: 14pt;
     }
     .video{
@@ -50,7 +49,6 @@ img{
         width: 800px;
     }
 }
-
 /* big size */
 @media all and (min-width:641px) and (max-width:1280px){
     .video{
@@ -62,7 +60,6 @@ img{
     }
 
 } 
-
 /*medium size*/
 @media all and (min-width: 481px) and (max-width: 640px) {
     img{
@@ -77,11 +74,8 @@ img{
         height: 300px;
         width: 460px;
         position:relative;
-        
     }
-    
 }
-
 /*small size*/
 @media all and (min-width: 320px) and (max-width: 480px) {
     img{
@@ -89,7 +83,6 @@ img{
         display: block;
         margin:0 .5rem 1rem 0; 
     }
-    
    .container{
        margin-top: 4rem;
        margin-left: 0;

@@ -44,8 +44,6 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
       { name: 'og:url', content: `${this.ulrBase}${this.router.url}` },
     ]);
 
-    console.log(this.router.url);
-
     this.wikiService.getData(this.bandData.name).subscribe(result => {
       //rellena datos
       const subArticles = (JSON.stringify(result.parse.text)).split("<p>");
@@ -88,9 +86,12 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
     this.oldTags.map(tag => {
       (typeof tag !== 'string') ? this.meta.updateTag({ name: tag.name, content: tag.content }) : this.title.setTitle(tag);
     });
-
   }
-
+  /**
+   * Limpia la cadena introducida
+   * @param str 
+   * @returns String
+   */
   limpiar(str): string {
     var limpia = str.replace(/<\/?[^>]+(>|$)/g, '').replace(/\[.{1,2}\]/g, '');
     return limpia;
