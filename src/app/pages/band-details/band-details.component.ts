@@ -48,9 +48,14 @@ export class BandDetailsComponent implements OnInit, OnDestroy {
 
     this.wikiService.getData(this.bandData.name).subscribe(result => {
       //rellena datos
-      let data = this.limpiar(JSON.stringify(result.parse.text).split("<p>")[1]).split(".");
+      debugger;
+      const subArticles = (JSON.stringify(result.parse.text)).split("<p>");
+      let artIndex = subArticles.findIndex((item:string)=>{
+        return item.includes(`<b>${this.mainTitle}</b>`);
+      })
+      let data = this.limpiar(subArticles[artIndex]).split(".");
       const limpia = data.slice(0, data.length - 1).join(".");
-      let data2 = this.limpiar(JSON.stringify(result.parse.text).split("<p>")[2]).split(".");
+      let data2 = this.limpiar(subArticles[artIndex+1]).split(".");
       this.contenido = `${limpia}. ${data2.slice(0, data2.length - 1).join(".")}`;
 
       this.altImg = `${this.bandData.name} image`;
