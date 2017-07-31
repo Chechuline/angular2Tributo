@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed, } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core'
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { BandDetailsComponent } from './band-details.component';
 import { WikiService } from '../../wiki.service';
@@ -12,7 +13,7 @@ describe('BandDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [BandDetailsComponent],
       providers: [WikiService],
-      imports: [JsonpModule],
+      imports: [JsonpModule, RouterTestingModule],
       schemas: [NO_ERRORS_SCHEMA]
     });
 
